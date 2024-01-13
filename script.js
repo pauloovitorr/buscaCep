@@ -42,11 +42,29 @@ cep.addEventListener('blur', function(){
 
 
     function preencher_form(result){
+
+        if( result.bairro=='' && result.logradouro==''){
+            document.querySelector('#logradouro').value = 'CEP NÃO TEM UM BAIRRO EM ESPECÍFICO'
+            document.querySelector('#bairro').value = 'CEP NÃO TEM UMA RUA EM ESPECÍFICO'
+            document.querySelector('#localidade').value = result.localidade
+            document.querySelector('#uf').value = result.uf
+            document.querySelector('#ddd').value = result.ddd
+
+
+            pai.classList.remove('pai')
+            pai.classList.add('paiCerto')
+            pai.style.border = '3px solid rgb(24, 237, 9)'
+
+            return
+        }
+
         document.querySelector('#logradouro').value = result.logradouro
         document.querySelector('#bairro').value = result.bairro
         document.querySelector('#localidade').value = result.localidade
         document.querySelector('#uf').value = result.uf
         document.querySelector('#ddd').value = result.ddd
+
+        
 
         pai.classList.remove('pai')
         pai.classList.add('paiCerto')
